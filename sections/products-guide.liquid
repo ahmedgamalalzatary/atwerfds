@@ -1,0 +1,301 @@
+{% comment %}
+  PRODUCTS GUIDE GRID SECTION
+  
+  Purpose: Display 6 products in a grid with clickable hotspots that open popup
+  Features:
+  - 6 product blocks selectable from customizer
+  - Circular "+" hotspots on each product image
+  - Responsive: 3 columns (desktop) / 1 column (mobile)
+  - Triggers popup on hotspot click
+  - Hides blocks with no product selected
+  
+  Author: Candidate Assignment
+  Date: 2026-01-03
+{% endcomment %}
+
+<div class="products-guide-section" data-section-id="{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="products-guide-heading">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+
+  <div class="products-guide-grid">
+    {%- for block in section.blocks -%}
+      {%- assign product = block.settings.product -%}
+      
+      {%- comment -%}
+        WHY: Only render blocks with products selected
+        Keeps the grid clean and prevents empty spaces
+      {%- endcomment -%}
+      {%- if product != blank -%}
+        <div class="products-guide-item" {{ block.shopify_attributes }}>
+          <div class="products-guide-card">
+            {%- comment -%} Product Image {%- endcomment -%}
+            {%- if product.featured_image -%}
+              <img
+                src="{{ product.featured_image | image_url: width: 800 }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                class="products-guide-image"
+                loading="lazy"
+                width="800"
+                height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
+              >
+            {%- else -%}
+              {%- comment -%} Fallback if no image {%- endcomment -%}
+              {{ 'product-1' | placeholder_svg_tag: 'products-guide-placeholder' }}
+            {%- endif -%}
+
+            {%- comment -%}
+              Hotspot Button - Opens popup with product details
+              WHY: data-product-handle is used instead of ID for cleaner AJAX fetch
+            {%- endcomment -%}
+            <button
+              class="products-guide-hotspot"
+              data-product-handle="{{ product.handle }}"
+              data-product-id="{{ product.id }}"
+              aria-label="View {{ product.title }} details"
+              type="button"
+            >
+              <span class="hotspot-icon">+</span>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- comment -%}
+  Small inline script for hotspot click handling
+  WHY: Keeps event listeners close to markup for clarity
+  Actual popup logic is in separate product-popup.js file
+{%- endcomment -%}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const hotspots = document.querySelectorAll('.products-guide-hotspot');
+    
+    hotspots.forEach(function(hotspot) {
+      hotspot.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const productHandle = this.getAttribute('data-product-handle');
+        
+        // Call popup function from product-popup.js
+        if (typeof window.openProductPopup === 'function') {
+          window.openProductPopup(productHandle);
+        } else {
+          console.error('Product popup script not loaded');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ============================================
+     PRODUCTS GUIDE GRID - STYLES
+     WHY: Inline styles keep section self-contained
+     ============================================ */
+
+  .products-guide-section {
+    padding: 60px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .products-guide-heading {
+    font-size: 36px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0 0 48px 0;
+    text-align: center;
+  }
+
+  /* ============================================
+     GRID LAYOUT
+     WHY: CSS Grid provides clean responsive layout
+     without complex media queries
+     ============================================ */
+  .products-guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .products-guide-item {
+    position: relative;
+  }
+
+  .products-guide-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    background: #f5f5f5;
+    aspect-ratio: 3 / 4; /* Maintains consistent card height */
+  }
+
+  /* Product Image */
+  .products-guide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .products-guide-card:hover .products-guide-image {
+    transform: scale(1.05); /* Subtle zoom on hover */
+  }
+
+  /* Placeholder SVG styling */
+  .products-guide-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ============================================
+     HOTSPOT BUTTON
+     WHY: Positioned absolute for precise placement
+     White background with shadow for visibility
+     ============================================ */
+  .products-guide-hotspot {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 5;
+  }
+
+  .products-guide-hotspot:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+  }
+
+  .products-guide-hotspot:active {
+    transform: scale(1.05);
+  }
+
+  .hotspot-icon {
+    font-size: 28px;
+    font-weight: 300;
+    color: #000000;
+    line-height: 1;
+  }
+
+  /* ============================================
+     MOBILE RESPONSIVE
+     WHY: Single column on mobile as per requirements
+     ============================================ */
+  @media screen and (max-width: 749px) {
+    .products-guide-section {
+      padding: 40px 16px;
+    }
+
+    .products-guide-heading {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+
+    .products-guide-grid {
+      grid-template-columns: 1fr; /* Single column on mobile */
+      gap: 24px;
+    }
+
+    .products-guide-hotspot {
+      width: 44px;
+      height: 44px;
+      top: 16px;
+      right: 16px;
+    }
+
+    .hotspot-icon {
+      font-size: 24px;
+    }
+  }
+
+  /* Tablet view - maintain 3 columns */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .products-guide-grid {
+      gap: 24px;
+    }
+  }
+
+  /* Accessibility - Focus styles */
+  .products-guide-hotspot:focus {
+    outline: 3px solid #0D499F;
+    outline-offset: 2px;
+  }
+
+  .products-guide-hotspot:focus:not(:focus-visible) {
+    outline: none;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Products Guide Grid",
+  "tag": "section",
+  "class": "section-products-guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Tisso vison in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Guide Grid",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

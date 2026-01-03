@@ -31,6 +31,9 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
+    {%- comment -%} Product Popup Styles {%- endcomment -%}
+    {{ 'product-popup.css' | asset_url | stylesheet_tag }}
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}
@@ -113,5 +116,8 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    {%- comment -%} Product Popup Script {%- endcomment -%}
+    <script src="{{ 'product-popup.js' | asset_url }}" defer></script>
   </body>
 </html>
