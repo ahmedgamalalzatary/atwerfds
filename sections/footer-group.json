@@ -136,8 +136,8 @@
         }
       },
       "block_order": [
-        "group_H6VpwJ",
-        "email_signup_crihX7"
+       "email_signup_crihX7" ,
+        "group_H6VpwJ"
       ],
       "name": "t:names.footer",
       "settings": {
