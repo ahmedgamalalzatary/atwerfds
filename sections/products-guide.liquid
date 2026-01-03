@@ -1,6 +1,6 @@
 {% comment %}
   PRODUCTS GUIDE GRID SECTION
-  
+
   Purpose: Display 6 products in a grid with clickable hotspots that open popup
   Features:
   - 6 product blocks selectable from customizer
@@ -8,7 +8,7 @@
   - Responsive: 3 columns (desktop) / 1 column (mobile)
   - Triggers popup on hotspot click
   - Hides blocks with no product selected
-  
+
   Author: Candidate Assignment
   Date: 2026-01-03
 {% endcomment %}
@@ -23,7 +23,7 @@
   <div class="products-guide-grid">
     {%- for block in section.blocks -%}
       {%- assign product = block.settings.product -%}
-      
+
       {%- comment -%}
         WHY: Only render blocks with products selected
         Keeps the grid clean and prevents empty spaces
@@ -72,15 +72,15 @@
   Actual popup logic is in separate product-popup.js file
 {%- endcomment -%}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const hotspots = document.querySelectorAll('.products-guide-hotspot');
-    
-    hotspots.forEach(function(hotspot) {
-      hotspot.addEventListener('click', function(e) {
+
+    hotspots.forEach(function (hotspot) {
+      hotspot.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const productHandle = this.getAttribute('data-product-handle');
-        
+
         // Call popup function from product-popup.js
         if (typeof window.openProductPopup === 'function') {
           window.openProductPopup(productHandle);
@@ -99,10 +99,9 @@
      ============================================ */
 
   .products-guide-section {
-    padding: 60px 20px;
-    max-width: 1400px;
+    padding: 60px 0 0 90px;
+    max-width: 1440px;
     margin: 0 auto;
-    font-family: 'Jost', sans-serif;
   }
 
   .products-guide-heading {
@@ -110,7 +109,8 @@
     font-weight: 400;
     color: #000000;
     margin: 0 0 48px 0;
-    text-align: center;
+    text-align: left;
+    font-family: 'Lustria', sans-serif;
   }
 
   /* ============================================
@@ -182,7 +182,7 @@
   .products-guide-hotspot:hover {
     transform: scale(1.15);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    background: #FFFFFF;
+    background: #ffffff;
   }
 
   .products-guide-hotspot:active {
@@ -236,7 +236,7 @@
 
   /* Accessibility - Focus styles */
   .products-guide-hotspot:focus {
-    outline: 3px solid #0D499F;
+    outline: 3px solid #0d499f;
     outline-offset: 2px;
   }
 
