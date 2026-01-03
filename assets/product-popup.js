@@ -217,11 +217,11 @@
     const colorButtonsContainer = document.getElementById('popupColorButtons');
     colorButtonsContainer.innerHTML = '';
 
-    // Extract unique colors from variants (option1 is typically color)
+    // Extract unique colors from variants (option2 is color in this store)
     const colors = new Set();
     product.variants.forEach(function(variant) {
-      if (variant.option1) {
-        colors.add(variant.option1);
+      if (variant.option2) {
+        colors.add(variant.option2);
       }
     });
 
@@ -245,33 +245,25 @@
   // ============================================
   // SELECT COLOR
   // WHY: Updates selected color and button styling
-  // Special requirement: Button background becomes the actual color
+  // Default: Black text on white background
+  // Active/Clicked: White text on black background
   // ============================================
   function selectColor(color, buttonElement) {
     selectedColor = color;
 
-    // Remove active class from all buttons
+    // Remove active class from all buttons and reset to default styling
     const allButtons = document.querySelectorAll('.product-popup-color-btn');
     allButtons.forEach(function(btn) {
       btn.classList.remove('active');
-      btn.style.backgroundColor = '';
-      btn.style.color = '';
+      // Reset to default: black text, white background
+      btn.style.backgroundColor = '#FFFFFF';
+      btn.style.color = '#000000';
     });
 
-    // Add active class and apply color styling
+    // Add active class to clicked button: white text, black background
     buttonElement.classList.add('active');
-    
-    const colorKey = color.toLowerCase();
-    const hexColor = COLOR_MAP[colorKey] || '#000000';
-    
-    buttonElement.style.backgroundColor = hexColor;
-    
-    // WHY: White text on white background is unreadable, use black instead
-    if (colorKey === 'white') {
-      buttonElement.style.color = '#000000';
-    } else {
-      buttonElement.style.color = '#FFFFFF';
-    }
+    buttonElement.style.backgroundColor = '#000000';
+    buttonElement.style.color = '#FFFFFF';
 
     // Update add to cart button state
     updateAddToCartButton();
@@ -372,9 +364,9 @@
   // ============================================
   function findMatchingVariant(product, color, size) {
     return product.variants.find(function(variant) {
-      // option1 is typically color, option2 is typically size
-      const variantColor = variant.option1 ? variant.option1.toLowerCase() : '';
-      const variantSize = variant.option2 ? variant.option2.toUpperCase() : '';
+      // option1 is size, option2 is color in this store
+      const variantSize = variant.option1 ? variant.option1.toUpperCase() : '';
+      const variantColor = variant.option2 ? variant.option2.toLowerCase() : '';
       
       return variantColor === color.toLowerCase() && variantSize === size;
     });

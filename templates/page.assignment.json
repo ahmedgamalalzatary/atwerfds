@@ -21,37 +21,37 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "classic-varsity-top"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "floral-white-top"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "classic-leather-jacket"
           }
         },
         "product_4": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "dark-denim-top"
           }
         },
         "product_5": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "black-leather-bag"
           }
         },
         "product_6": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "blue-silk-tuxedo"
           }
         }
       },

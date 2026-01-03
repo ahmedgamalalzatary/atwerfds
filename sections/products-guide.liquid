@@ -158,15 +158,16 @@
 
   /* ============================================
      HOTSPOT BUTTON
-     WHY: Positioned absolute for precise placement
-     White background with shadow for visibility
+     WHY: Centered and hidden by default
+     Only appears on product card hover
      ============================================ */
   .products-guide-hotspot {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
     border: none;
@@ -177,20 +178,28 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Show hotspot on card hover */
+  .products-guide-card:hover .products-guide-hotspot {
+    opacity: 1;
+    visibility: visible;
   }
 
   .products-guide-hotspot:hover {
-    transform: scale(1.15);
+    transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
     background: #ffffff;
   }
 
   .products-guide-hotspot:active {
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
   .hotspot-icon {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 300;
     color: #000000;
     line-height: 1;
@@ -198,8 +207,10 @@
 
   /* ============================================
      MOBILE RESPONSIVE
-     WHY: Single column on mobile as per requirements
+     WHY: Optimized for all screen sizes
      ============================================ */
+  
+  /* Mobile: Single column, hotspot always visible (no hover on mobile) */
   @media screen and (max-width: 749px) {
     .products-guide-section {
       padding: 40px 16px;
@@ -208,6 +219,7 @@
     .products-guide-heading {
       font-size: 28px;
       margin-bottom: 32px;
+      text-align: center;
     }
 
     .products-guide-grid {
@@ -215,22 +227,40 @@
       gap: 24px;
     }
 
+    /* Mobile: Show hotspot always (no hover state) */
     .products-guide-hotspot {
-      width: 44px;
-      height: 44px;
-      top: 16px;
-      right: 16px;
+      width: 56px;
+      height: 56px;
+      opacity: 1;
+      visibility: visible;
     }
 
     .hotspot-icon {
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 
-  /* Tablet view - maintain 3 columns */
+  /* Tablet: 2 columns for better spacing */
   @media screen and (min-width: 750px) and (max-width: 989px) {
+    .products-guide-section {
+      padding: 50px 24px;
+    }
+
     .products-guide-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+    }
+
+    .products-guide-heading {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+  }
+
+  /* Large Desktop: Maintain max-width and spacing */
+  @media screen and (min-width: 1440px) {
+    .products-guide-section {
+      padding: 60px 90px;
     }
   }
 

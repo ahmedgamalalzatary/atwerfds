@@ -176,8 +176,9 @@
 }
 
 .product-popup-color-btn.active {
+  background: #000000;
+  color: #FFFFFF;
   border-color: #000000;
-  /* Background and color set dynamically via JS */
 }
 
 /* Size Dropdown */
