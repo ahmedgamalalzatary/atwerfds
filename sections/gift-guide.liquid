@@ -228,31 +228,39 @@
     object-fit: cover;
     z-index: 1;
   }
+.up-section {
+  width: 100%
+    position: relative;
+}
 
+
+.up-section .guide-img-1 {
+  width: 100%;
+  object-fit: cover; /* المعادلة التي تضمن ملء الفراغ دون تشويه */
+  
+}
   .bottom-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 2rem;
+    padding: 0 2rem;
     gap: 4rem;
   }
 
   .bottom-section .gift-guide-content {
-    flex: 0.6;
+    flex: 0.5;
   }
   .bottom-section .gift-guide-heading {
     font-size: 70px;
     color: #000000;
     font-weight: 500;
+    margin: 0;
   }
   .bottom-section .gift-guide-description {
     font-size: 20px;
-    margin: 20px 0;
     font-weight: 400;
   }
-  .bottom-section .gift-guide-btn {
-    margin-top: 20px;
-  }
+
   .bottom-section .gift-guide-image-wrapper {
     flex: 1;
     transform: scale(1.8);
