@@ -28,8 +28,8 @@
       {%- if section.settings.button1_text != blank -%}
         <a href="{{ section.settings.button1_link | default: '#' }}" class="gift-guide-btn gift-guide-btn-yellow">
           <span class="btn-text">{{ section.settings.button1_text }}</span>
-          <span class="arrow arrow-left">⟶</span>
-          <span class="arrow arrow-right">⟶</span>
+          <span class="arrow arrow-left">{{ section.settings.button_arrow }}</span>
+          <span class="arrow arrow-right">{{ section.settings.button_arrow }}</span>
         </a>
       {%- endif -%}
     </div>
@@ -55,8 +55,8 @@
         {%- if section.settings.button2_text != blank -%}
           <a href="{{ section.settings.button2_link | default: '#' }}" class="gift-guide-btn gift-guide-btn-black">
             <span class="btn-text">{{ section.settings.button2_text }}</span>
-            <span class="arrow arrow-left">⟶</span>
-            <span class="arrow arrow-right">⟶</span>
+            <span class="arrow arrow-left">{{ section.settings.button_arrow }}</span>
+            <span class="arrow arrow-right">{{ section.settings.button_arrow }}</span>
           </a>
         {%- endif -%}
       </div>
@@ -401,6 +401,12 @@
       "type": "url",
       "id": "button2_link",
       "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_arrow",
+      "label": "Button Arrow Symbol",
+      "default": "⟶"
     },
     {
       "type": "header",
