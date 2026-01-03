@@ -17,32 +17,21 @@
   {%- comment -%} Top header bar - fixed to section {%- endcomment -%}
   <div class="gift-guide-header">
     <div class="gift-guide-header-content">
-      
-      {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
-      <input type="checkbox" id="gift-guide-menu-toggle-{{ section.id }}" class="gift-guide-menu-toggle" hidden>
-      <label for="gift-guide-menu-toggle-{{ section.id }}" class="gift-guide-menu-icon">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </label>
-
       <div class="gift-guide-logo">
         {{ section.settings.logo_text }}
       </div>
 
-      <div class="gift-guide-nav">
-        <div class="gift-guide-tagline">
-          {{ section.settings.tagline }}
-        </div>
-
-        {%- if section.settings.button1_text != blank -%}
-          <a href="{{ section.settings.button1_link | default: '#' }}" class="gift-guide-btn gift-guide-btn-yellow">
-            <span class="btn-text">{{ section.settings.button1_text }}</span>
-            <span class="arrow arrow-left">{{ section.settings.button_arrow }}</span>
-            <span class="arrow arrow-right">{{ section.settings.button_arrow }}</span>
-          </a>
-        {%- endif -%}
+      <div class="gift-guide-tagline">
+        {{ section.settings.tagline }}
       </div>
+
+      {%- if section.settings.button1_text != blank -%}
+        <a href="{{ section.settings.button1_link | default: '#' }}" class="gift-guide-btn gift-guide-btn-yellow">
+          <span class="btn-text">{{ section.settings.button1_text }}</span>
+          <span class="arrow arrow-left">{{ section.settings.button_arrow }}</span>
+          <span class="arrow arrow-right">{{ section.settings.button_arrow }}</span>
+        </a>
+      {%- endif -%}
     </div>
   </div>
   <div class="hero-section container">
@@ -100,7 +89,7 @@
     font-family: 'Jost', sans-serif;
     overflow: hidden;
     margin: 0 auto;
-    max-width: 90rem;
+    max-width: 1440px;
   }
 
   /* ============================================
@@ -111,9 +100,9 @@
     padding: 1rem 0;
     position: absolute;
     width: 100%;
-    z-index: 100; /* Increased Z-index for menu overlay */
+    z-index: 10;
     margin: 0 auto;
-    max-width: 90rem;
+    max-width: 1440px;
   }
 
   .gift-guide-header-content {
@@ -122,48 +111,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
   }
 
   .gift-guide-logo {
     font-size: 1.25rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.0625rem;
-    z-index: 102;
-  }
-
-  .gift-guide-nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex: 1;
-    justify-content: flex-end;
+    letter-spacing: 1px;
   }
 
   .gift-guide-tagline {
     font-size: 1rem;
     font-weight: 400;
+    flex: 1;
     text-align: center;
-  }
-
-  /* Mobile Menu Icon (Hidden on Desktop) */
-  .gift-guide-menu-icon {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 1.5rem;
-    height: 1.125rem;
-    z-index: 102;
-  }
-
-  .gift-guide-menu-icon .icon-bar {
-    display: block;
-    width: 100%;
-    height: 0.125rem;
-    background-color: #000;
-    transition: 0.3s;
   }
 
   /* ============================================
@@ -174,8 +135,8 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    padding: 0.75rem 1.125rem 0.75rem 2.625rem;
+    gap: 10px;
+    padding: 12px 18px 12px 42px;
     font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
@@ -183,7 +144,6 @@
     overflow: hidden;
     transition: color 0.4s ease;
     z-index: 1;
-    white-space: nowrap;
   }
 
   /* Pseudo-element for color fill animation */
@@ -242,7 +202,7 @@
   .gift-guide-btn .arrow-right {
     opacity: 0;
     position: absolute;
-    right: 1.125rem;
+    right: 18px;
   }
 
   .gift-guide-btn:hover .arrow-left {
@@ -272,58 +232,44 @@
     object-fit: cover;
     z-index: 1;
   }
-  .up-section {
-    width: 100%;
+.up-section {
+  width: 100%
     position: relative;
-    overflow: hidden;
-  }
+}
 
-  .up-section .guide-img-1 {
-    width: 100%;
-    object-fit: cover;
-    display: block;
-  }
+
+.up-section .guide-img-1 {
+  width: 100%;
+  object-fit: cover; /* المعادلة التي تضمن ملء الفراغ دون تشويه */
+  
+}
   .bottom-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 0 2rem;
     gap: 4rem;
-    position: relative;
   }
 
   .bottom-section .gift-guide-content {
-    flex: 0 1 45%;
-    max-width: 37.5rem;
-    z-index: 2;
+    flex: 0.5;
   }
-
   .bottom-section .gift-guide-heading {
-    font-size: 4.375rem;
+    font-size: 70px;
     color: #000000;
     font-weight: 500;
     margin: 0 0 2rem 0;
-    line-height: 1.1;
   }
-
   .bottom-section .gift-guide-description {
-    font-size: 1.25rem;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 1.6;
     margin: 0 0 2rem 0;
   }
 
   .bottom-section .gift-guide-image-wrapper {
-    flex: 0 1 55%;
-    max-width: 43.75rem;
-    position: relative;
-  }
-
-  .bottom-section .gift-guide-image-wrapper img {
-    width: 100%;
-    height: auto;
-    max-height: 37.5rem;
-    object-fit: cover;
+    flex: 1;
+    transform: scale(1.8);
+    transform-origin: left top;
   }
   /* ============================================
     FOOTER BAR (Bottom sustainability message)
@@ -331,229 +277,75 @@
   .gift-guide-footer {
     background: #f5f5f5;
     text-align: center;
-    padding: 0.625rem 0;
+    padding: 10px 0;
     font-size: 1rem;
     font-weight: 400;
-    letter-spacing: 0rem;
+    letter-spacing: 0px;
     z-index: 10;
     position: relative;
   }
 
   /* ============================================
     MOBILE RESPONSIVE
-    WHY: Optimized for all screen sizes
+    WHY: Mobile-first ensures good performance on all devices
      ============================================ */
-  
-  /* Mobile: ≤749px */
-  @media screen and (max-width: 46.8125rem) {
-    .gift-guide-header {
-      position: relative;
-      padding: 1rem 0;
-    }
-
+  @media screen and (max-width: 749px) {
     .gift-guide-header-content {
-      /* flex-direction: column; -- REMOVED */
-      flex-direction: row;
-      justify-content: flex-start; /* Align Hamburger left */
-      gap: 0;
-      max-width: 100%;
-      padding: 0 1rem;
-    }
-
-    .gift-guide-menu-icon {
-      display: flex;
-      margin-right: 1.25rem; /* Space between burger and logo */
-    }
-
-    .gift-guide-logo {
-      font-size: 1rem;
-      flex-grow: 1; /* Center Logo */
-      text-align: center;
-      padding-right: 2.75rem; /* Balance hamburger width + margin to center perfectly */
-    }
-
-    /* Mobile Menu Drawer */
-    .gift-guide-nav {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
       flex-direction: column;
-      background: #f5f5f5;
-      padding: 1.25rem;
-      gap: 1.25rem;
-      border-top: 0.0625rem solid #e0e0e0;
-      transform: translateY(-1.25rem);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 100;
-      box-shadow: 0 0.625rem 0.625rem rgba(0,0,0,0.05);
-    }
-
-    /* Open Menu State */
-    .gift-guide-menu-toggle:checked ~ .gift-guide-nav {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Hamburger Animation to X */
-    .gift-guide-menu-toggle:checked ~ .gift-guide-menu-icon .icon-bar:nth-child(1) {
-      transform: rotate(45deg) translate(0.3125rem, 0.3125rem);
-    }
-    .gift-guide-menu-toggle:checked ~ .gift-guide-menu-icon .icon-bar:nth-child(2) {
-      opacity: 0;
-    }
-    .gift-guide-menu-toggle:checked ~ .gift-guide-menu-icon .icon-bar:nth-child(3) {
-      transform: rotate(-45deg) translate(0.3125rem, -0.3125rem);
+      gap: 12px;
     }
 
     .gift-guide-tagline {
-      display: block; /* Show tagline in drawer */
-      margin-bottom: 0.625rem;
+      display: none; /* Hide on mobile to save space */
     }
 
     .gift-guide-btn {
       width: 100%;
       justify-content: center;
-      padding: 0.875rem 1.5rem;
-      font-size: 0.9rem;
+      padding: 14px 24px;
     }
 
-    .hero-section.container {
-      width: 100%;
-      padding: 0;
-    }
-
-    /* Hide Top Image Section on Mobile */
+    /* Overlay Mobile */
     .up-section {
       display: none;
     }
 
+    /* Split Mobile */
     .bottom-section {
-      display: block; /* Simpler than flex for basic stacking */
-      padding: 0;
-      width: 100%;
+      flex-direction: column;
+      min-height: auto;
     }
 
     .bottom-section .gift-guide-content {
-      width: 100%;
-      padding: 2.5rem 1.25rem;
+      max-width: 100%;
+      padding: 40px 20px;
       text-align: center;
-      box-sizing: border-box;
-    }
-
-    .bottom-section .gift-guide-heading {
-      font-size: 2.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .bottom-section .gift-guide-description {
-      font-size: 1rem;
-      line-height: 1.5;
+      order: 2;
     }
 
     .bottom-section .gift-guide-image-wrapper {
+      height: 300px;
       width: 100%;
+      order: 1;
     }
 
-    .bottom-section .gift-guide-image-wrapper img {
-      width: 100%;
-      height: 18.75rem;
-      object-fit: cover;
-      display: block;
+    .gift-guide-heading {
+      font-size: 40px;
+    }
+
+    .gift-guide-description {
+      font-size: 16px;
     }
 
     .gift-guide-footer {
-      font-size: 0.625rem;
-      padding: 0.75rem 1rem;
-      letter-spacing: 0.03125rem;
+      font-size: 11px;
+      padding: 12px 16px;
     }
   }
 
-  /* Tablet: 750px - 989px */
-  @media screen and (min-width: 46.875rem) and (max-width: 61.8125rem) {
-    .gift-guide-header-content {
-      max-width: 95%;
-      padding: 0 1.25rem;
-    }
-
-    .gift-guide-logo {
-      font-size: 1.1rem;
-    }
-
-    .gift-guide-tagline {
-      font-size: 0.9rem;
-    }
-
-    .hero-section.container {
-      width: 95%;
-    }
-
-    .bottom-section {
-      padding: 2rem 0.625rem;
-      gap: 2rem;
-    }
-
-    .bottom-section .gift-guide-content {
-      flex: 0 1 50%;
-    }
-
-    .bottom-section .gift-guide-heading {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .bottom-section .gift-guide-description {
-      font-size: 1.125rem;
-    }
-
-    .bottom-section .gift-guide-image-wrapper {
-      flex: 0 1 50%;
-      max-width: 31.25rem;
-    }
-
-    .bottom-section .gift-guide-image-wrapper img {
-      max-height: 31.25rem;
-    }
-
-    .gift-guide-footer {
-      font-size: 0.9rem;
-    }
-  }
-
-  /* Desktop: 990px - 1439px */
-  @media screen and (min-width: 61.875rem) and (max-width: 89.9375rem) {
-    .bottom-section .gift-guide-heading {
-      font-size: 3.75rem;
-    }
-
-    .bottom-section .gift-guide-description {
-      font-size: 1.1875rem;
-    }
-
-    .bottom-section .gift-guide-image-wrapper {
-      max-width: 37.5rem;
-    }
-  }
-
-  /* Large Desktop: ≥1440px */
-  @media screen and (min-width: 90rem) {
-    .gift-guide-header-content {
-      max-width: 81.25rem;
-    }
-
-    .hero-section.container {
-      width: 81.25rem;
-    }
-
-    .bottom-section {
-      padding: 3rem 2rem;
-    }
-
-    .bottom-section .gift-guide-heading {
-      font-size: 4.375rem;
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .gift-guide-heading {
+      font-size: 52px;
     }
   }
 </style>
