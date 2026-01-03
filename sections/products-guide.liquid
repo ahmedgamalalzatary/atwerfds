@@ -99,16 +99,16 @@
      ============================================ */
 
   .products-guide-section {
-    padding: 60px 0 0 90px;
-    max-width: 1440px;
+    padding: 3.75rem 0 0 5.625rem;
+    max-width: 90rem;
     margin: 0 auto;
   }
 
   .products-guide-heading {
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 400;
     color: #000000;
-    margin: 0 0 48px 0;
+    margin: 0 0 3rem 0;
     text-align: left;
     font-family: 'Lustria', sans-serif;
   }
@@ -121,7 +121,7 @@
   .products-guide-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 1.875rem;
   }
 
   .products-guide-item {
@@ -166,8 +166,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
     border: none;
@@ -175,7 +175,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     z-index: 5;
     opacity: 0;
@@ -190,7 +190,7 @@
 
   .products-guide-hotspot:hover {
     transform: translate(-50%, -50%) scale(1.1);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.25);
     background: #ffffff;
   }
 
@@ -199,7 +199,7 @@
   }
 
   .hotspot-icon {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 300;
     color: #000000;
     line-height: 1;
@@ -211,63 +211,63 @@
      ============================================ */
   
   /* Mobile: Single column, hotspot always visible (no hover on mobile) */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 46.8125rem) {
     .products-guide-section {
-      padding: 40px 16px;
+      padding: 2.5rem 1rem;
     }
 
     .products-guide-heading {
-      font-size: 28px;
-      margin-bottom: 32px;
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
       text-align: center;
     }
 
     .products-guide-grid {
       grid-template-columns: 1fr; /* Single column on mobile */
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     /* Mobile: Show hotspot always (no hover state) */
     .products-guide-hotspot {
-      width: 56px;
-      height: 56px;
+      width: 3.5rem;
+      height: 3.5rem;
       opacity: 1;
       visibility: visible;
     }
 
     .hotspot-icon {
-      font-size: 28px;
+      font-size: 1.75rem;
     }
   }
 
   /* Tablet: 2 columns for better spacing */
-  @media screen and (min-width: 750px) and (max-width: 989px) {
+  @media screen and (min-width: 46.875rem) and (max-width: 61.8125rem) {
     .products-guide-section {
-      padding: 50px 24px;
+      padding: 3.125rem 1.5rem;
     }
 
     .products-guide-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     .products-guide-heading {
-      font-size: 32px;
-      margin-bottom: 40px;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
     }
   }
 
   /* Large Desktop: Maintain max-width and spacing */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 90rem) {
     .products-guide-section {
-      padding: 60px 90px;
+      padding: 3.75rem 5.625rem;
     }
   }
 
   /* Accessibility - Focus styles */
   .products-guide-hotspot:focus {
-    outline: 3px solid #0d499f;
-    outline-offset: 2px;
+    outline: 0.1875rem solid #0d499f;
+    outline-offset: 0.125rem;
   }
 
   .products-guide-hotspot:focus:not(:focus-visible) {
