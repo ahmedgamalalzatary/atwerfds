@@ -34,8 +34,18 @@
         {%- if section.settings.heading != blank -%}
           <h1 class="gift-guide-heading">{{ section.settings.heading }}</h1>
         {%- endif -%}
-        {%- if section.settings.description != blank -%}
-          <div class="gift-guide-description">{{ section.settings.description }}</div>
+        {%- if section.settings.description_intro != blank or section.settings.description_extra != blank -%}
+          <div class="gift-guide-description">
+            
+            {{ section.settings.description_intro }}
+  
+            {%- if section.settings.description_extra != blank -%}
+              <div class="desktop-only-content">
+                {{ section.settings.description_extra }}
+              </div>
+            {%- endif -%}
+            
+          </div>
         {%- endif -%}
         {%- if section.settings.button2_text != blank -%}
           <a href="{{ section.settings.button2_link | default: '#' }}" class="gift-guide-btn gift-guide-btn-black">
@@ -236,24 +246,30 @@
     }
 
     .bottom-section .gift-guide-content {
-      flex: 0.5;
+      flex: 0.8;
     }
     .bottom-section .gift-guide-heading {
       font-size: 4.375rem;
       color: #000000;
       font-weight: 500;
-      margin: 0 0 2rem 0;
+      margin: 2.5rem 0;
     }
     .bottom-section .gift-guide-description {
       font-size: 1.25rem;
       font-weight: 400;
-      margin: 0 0 2rem 0;
+      margin: 0 0 2.5rem 0;
+    }
+    .bottom-section .gift-guide-description p {
+        margin-bottom: 0;
+      }
+      .bottom-section .gift-guide-btn {
+      margin-bottom: 1.5rem;
     }
 
     .bottom-section .gift-guide-image-wrapper {
       flex: 1;
       transform: scale(1.8);
-      transform-origin: left top;
+      transform-origin: left center;
     }
     /* ============================================
       FOOTER BAR (Bottom sustainability message)
@@ -267,12 +283,17 @@
       z-index: 10;
       position: relative;
     }
+   
 
     /* ============================================
       MOBILE RESPONSIVE
       WHY: Mobile-first ensures good performance on all devices
        ============================================ */
     @media screen and (max-width: 749px) {
+      .gift-guide-header{
+      position: relative;
+      margin-bottom: 10rem;
+    }
       .gift-guide-header-content {
         flex-direction: column;
         gap: 0.75rem;
@@ -288,38 +309,38 @@
         padding: 0.875rem 1.5rem;
       }
 
-      /* Overlay Mobile */
-      .up-section {
-        display: none;
-      }
+
 
       /* Split Mobile */
       .bottom-section {
         flex-direction: column;
         min-height: auto;
+        position:absolute;
+        top:5rem;
       }
-
+      .bottom-section .gift-guide-heading{
+      font-size: 2rem;
+      }
       .bottom-section .gift-guide-content {
         max-width: 100%;
-        padding: 2.5rem 1.25rem;
+        padding: 0 5rem;
         text-align: center;
         order: 2;
+      }
+      .gift-guide-description .desktop-only-content{
+        display: none;
       }
 
       .bottom-section .gift-guide-image-wrapper {
         height: 18.75rem;
         width: 100%;
         order: 1;
+        display: none;
       }
 
-      .gift-guide-heading {
-        font-size: 2.5rem;
-      }
-
-      .gift-guide-description {
+      .bottom-section .gift-guide-description {
         font-size: 1rem;
       }
-
       .gift-guide-footer {
         font-size: 0.6875rem;
         padding: 0.75rem 1rem;
@@ -383,9 +404,15 @@
     },
     {
       "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. <br> Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+      "id": "description_intro",
+      "label": "Description (Always Visible)",
+      "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description_extra",
+      "label": "Extra Description (Desktop Only)",
+      "default": "<p>Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
     },
     {
       "type": "text",
