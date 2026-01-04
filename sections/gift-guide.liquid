@@ -36,15 +36,13 @@
         {%- endif -%}
         {%- if section.settings.description_intro != blank or section.settings.description_extra != blank -%}
           <div class="gift-guide-description">
-            
             {{ section.settings.description_intro }}
-  
+
             {%- if section.settings.description_extra != blank -%}
               <div class="desktop-only-content">
                 {{ section.settings.description_extra }}
               </div>
             {%- endif -%}
-            
           </div>
         {%- endif -%}
         {%- if section.settings.button2_text != blank -%}
@@ -74,284 +72,297 @@
 </div>
 
 <style>
-    /* ============================================
-       GIFT GUIDE BANNER - STYLES
-       Using inline styles to keep section self-contained
-       and allow Liquid variable usage
-       ============================================ */
+      /* ============================================
+         GIFT GUIDE BANNER - STYLES
+         Using inline styles to keep section self-contained
+         and allow Liquid variable usage
+         ============================================ */
 
-    .gift-guide-section {
-      font-family: 'Jost', sans-serif;
-      overflow: hidden;
-      margin: 0 auto;
-      max-width: 1440px;
-    }
-
-    /* ============================================
-       HEADER BAR (Top section)
-       ============================================ */
-    .gift-guide-header {
-      background: #f5f5f5;
-      padding: 1rem 0;
-      position: absolute;
-      width: 100%;
-      z-index: 10;
-      margin: 0 auto;
-      max-width: 1440px;
-    }
-
-    .gift-guide-header-content {
-      max-width: 90%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .gift-guide-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .gift-guide-tagline {
-      font-size: 1rem;
-      font-weight: 400;
-      flex: 1;
-      text-align: center;
-    }
-
-    /* ============================================
-       BUTTONS - with left-to-right animation
-       WHY: Creates engaging interaction without being distracting
-       ============================================ */
-    .gift-guide-btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.625rem;
-      padding: 0.75rem 1.125rem 0.75rem 2.625rem;
-      font-size: 1rem;
-      font-weight: 400;
-      text-decoration: none;
-      border: none;
-      overflow: hidden;
-      transition: color 0.4s ease;
-      z-index: 1;
-    }
-
-    /* Pseudo-element for color fill animation */
-    .gift-guide-btn::before {
-      content: '';
-      position: absolute;
-      left: -100%;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      transition: left 0.4s ease;
-      z-index: -1;
-    }
-
-    .gift-guide-btn:hover::before {
-      left: 0;
-    }
-
-    /* Yellow button (CHOOSE GIFT) */
-    .gift-guide-btn-yellow {
-      background: #fff544;
-      color: #000000;
-    }
-
-    .gift-guide-btn-yellow::before {
-      background: #000000;
-    }
-
-    .gift-guide-btn-yellow:hover {
-      color: #ffffff;
-    }
-
-    /* Black button (SHOP NOW) */
-    .gift-guide-btn-black {
-      background: #000000;
-      color: #ffffff;
-    }
-
-    .gift-guide-btn-black::before {
-      background: #fff544;
-    }
-
-    .gift-guide-btn-black:hover {
-      color: #000000;
-    }
-
-    /* Arrow animation - swap left to right */
-    .gift-guide-btn .arrow {
-      transition: opacity 0.2s ease;
-    }
-
-    .gift-guide-btn .arrow-left {
-      opacity: 1;
-    }
-
-    .gift-guide-btn .arrow-right {
-      opacity: 0;
-      position: absolute;
-      right: 1.125rem;
-    }
-
-    .gift-guide-btn:hover .arrow-left {
-      opacity: 0;
-    }
-
-    .gift-guide-btn:hover .arrow-right {
-      opacity: 1;
-      transition-delay: 0.2s;
-    }
-
-    /* ============================================
-       HERO CONTENT AREA
-       ============================================ */
-
-    .hero-section.container {
-      position: relative;
-      width: 90%;
-      margin: 0 auto;
-    }
-    .gift-guide-img,
-    .guide-img-1,
-    .guide-img-2 {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      z-index: 1;
-    }
-  .up-section {
-    width: 100%
-      position: relative;
-  }
-
-
-  .up-section .guide-img-1 {
-    width: 100%;
-    object-fit: cover;
-  }
-    .bottom-section {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      gap: 4rem;
-    }
-
-    .bottom-section .gift-guide-content {
-      flex: 0.8;
-    }
-    .bottom-section .gift-guide-heading {
-      font-size: 4.375rem;
-      color: #000000;
-      font-weight: 500;
-      margin: 2.5rem 0;
-    }
-    .bottom-section .gift-guide-description {
-      font-size: 1.25rem;
-      font-weight: 400;
-      margin: 0 0 2.5rem 0;
-    }
-    .bottom-section .gift-guide-description p {
-        margin-bottom: 0;
+      .gift-guide-section {
+        font-family: 'Jost', sans-serif;
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: 1440px;
       }
-      .bottom-section .gift-guide-btn {
-      margin-bottom: 1.5rem;
-    }
 
-    .bottom-section .gift-guide-image-wrapper {
-      flex: 1;
-      transform: scale(1.8);
-      transform-origin: left center;
-    }
-    /* ============================================
-      FOOTER BAR (Bottom sustainability message)
-       ============================================ */
-    .gift-guide-footer {
-      background: #f5f5f5;
-      text-align: center;
-      padding: 0.625rem 0;
-      font-size: 1rem;
-      font-weight: 400;
-      z-index: 10;
-      position: relative;
-    }
-   
+      /* ============================================
+         HEADER BAR (Top section)
+         ============================================ */
+      .gift-guide-header {
+        background: #f5f5f5;
+        padding: 1rem 0;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        margin: 0 auto;
+        max-width: 1440px;
+      }
 
-    /* ============================================
-      MOBILE RESPONSIVE
-      WHY: Mobile-first ensures good performance on all devices
-       ============================================ */
-    @media screen and (max-width: 749px) {
-      .gift-guide-header{
-      position: relative;
-      margin-bottom: 10rem;
-    }
       .gift-guide-header-content {
-        flex-direction: column;
-        gap: 0.75rem;
+        max-width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .gift-guide-logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
 
       .gift-guide-tagline {
-        display: none; /* Hide on mobile to save space */
-      }
-
-      .gift-guide-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 0.875rem 1.5rem;
-      }
-
-
-
-      /* Split Mobile */
-      .bottom-section {
-        flex-direction: column;
-        min-height: auto;
-        position:absolute;
-        top:5rem;
-      }
-      .bottom-section .gift-guide-heading{
-      font-size: 2rem;
-      }
-      .bottom-section .gift-guide-content {
-        max-width: 100%;
-        padding: 0 5rem;
+        font-size: 1rem;
+        font-weight: 400;
+        flex: 1;
         text-align: center;
-        order: 2;
       }
-      .gift-guide-description .desktop-only-content{
-        display: none;
+
+      /* ============================================
+         BUTTONS - with left-to-right animation
+         WHY: Creates engaging interaction without being distracting
+         ============================================ */
+      .gift-guide-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.75rem 1.125rem 0.75rem 2.625rem;
+        font-size: 1rem;
+        font-weight: 400;
+        text-decoration: none;
+        border: none;
+        overflow: hidden;
+        transition: color 0.4s ease;
+        z-index: 1;
+      }
+
+      /* Pseudo-element for color fill animation */
+      .gift-guide-btn::before {
+        content: '';
+        position: absolute;
+        left: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: left 0.4s ease;
+        z-index: -1;
+      }
+
+      .gift-guide-btn:hover::before {
+        left: 0;
+      }
+
+      /* Yellow button (CHOOSE GIFT) */
+      .gift-guide-btn-yellow {
+        background: #fff544;
+        color: #000000;
+      }
+
+      .gift-guide-btn-yellow::before {
+        background: #000000;
+      }
+
+      .gift-guide-btn-yellow:hover {
+        color: #ffffff;
+      }
+
+      /* Black button (SHOP NOW) */
+      .gift-guide-btn-black {
+        background: #000000;
+        color: #ffffff;
+      }
+
+      .gift-guide-btn-black::before {
+        background: #fff544;
+      }
+
+      .gift-guide-btn-black:hover {
+        color: #000000;
+      }
+
+      /* Arrow animation - swap left to right */
+      .gift-guide-btn .arrow {
+        transition: opacity 0.2s ease;
+      }
+
+      .gift-guide-btn .arrow-left {
+        opacity: 1;
+      }
+
+      .gift-guide-btn .arrow-right {
+        opacity: 0;
+        position: absolute;
+        right: 1.125rem;
+      }
+
+      .gift-guide-btn:hover .arrow-left {
+        opacity: 0;
+      }
+
+      .gift-guide-btn:hover .arrow-right {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+
+      /* ============================================
+         HERO CONTENT AREA
+         ============================================ */
+
+      .hero-section.container {
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+      }
+      .gift-guide-img,
+      .guide-img-1,
+      .guide-img-2 {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        z-index: 1;
+      }
+    .up-section {
+      width: 100%
+        position: relative;
+    }
+
+
+    .up-section .guide-img-1 {
+      width: 100%;
+      object-fit: cover;
+    }
+      .bottom-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        gap: 4rem;
+      }
+
+      .bottom-section .gift-guide-content {
+        flex: 0.8;
+      }
+      .bottom-section .gift-guide-heading {
+        font-size: 4.375rem;
+        color: #000000;
+        font-weight: 500;
+        margin: 2.5rem 0;
+      }
+      .bottom-section .gift-guide-description {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin: 0 0 2.5rem 0;
+      }
+      .bottom-section .gift-guide-description p {
+          margin-bottom: 0;
+        }
+        .bottom-section .gift-guide-btn {
+        margin-bottom: 1.5rem;
       }
 
       .bottom-section .gift-guide-image-wrapper {
-        height: 18.75rem;
-        width: 100%;
-        order: 1;
-        display: none;
+        flex: 1;
+        transform: scale(1.8);
+        transform-origin: left center;
       }
-
-      .bottom-section .gift-guide-description {
-        font-size: 1rem;
-      }
+      /* ============================================
+        FOOTER BAR (Bottom sustainability message)
+         ============================================ */
       .gift-guide-footer {
-        font-size: 0.6875rem;
-        padding: 0.75rem 1rem;
+        background: #f5f5f5;
+        text-align: center;
+        padding: 0.625rem 0;
+        font-size: 1rem;
+        font-weight: 400;
+        z-index: 10;
+        position: relative;
       }
-    }
 
-    @media screen and (min-width: 750px) and (max-width: 989px) {
-      .gift-guide-heading {
-        font-size: 3.25rem;
+  /* ============================================
+        tablet RESPONSIVE
+        WHY: Ensure good readability and layout on medium-sized screens
+         ============================================ */
+      @media screen and (max-width: 1200px) {
+        .bottom-section .gift-guide-heading {
+          font-size: 2.75rem;
+          margin: 1.25rem 0;
+        }
+        .bottom-section .gift-guide-description {
+          font-size: 1rem;
+          margin: 0 0 1.5rem 0;
+        }
+        .bottom-section  {
+          gap: 2rem;
+        }
+        .bottom-section .gift-guide-image-wrapper {
+          transform-origin: left center;
       }
-    }
+      /* ============================================
+        MOBILE RESPONSIVE
+        WHY: Mobile-first ensures good performance on all devices
+         ============================================ */
+      @media screen and (max-width: 780px) {
+        .gift-guide-header{
+        position: relative;
+        margin-bottom: 10rem;
+      }
+        .gift-guide-header-content {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .gift-guide-tagline {
+          display: none; /* Hide on mobile to save space */
+        }
+
+        .gift-guide-btn {
+          width: 100%;
+          justify-content: center;
+          padding: 0.875rem 1.5rem;
+        }
+
+
+
+        /* Split Mobile */
+        .bottom-section {
+          flex-direction: column;
+          min-height: auto;
+          position:absolute;
+          top:5rem;
+        }
+        .bottom-section .gift-guide-heading{
+        font-size: 2rem;
+        }
+        .bottom-section .gift-guide-content {
+          max-width: 100%;
+          padding: 0 5rem;
+          text-align: center;
+          order: 2;
+        }
+        .gift-guide-description .desktop-only-content{
+          display: none;
+        }
+
+        .bottom-section .gift-guide-image-wrapper {
+          height: 18.75rem;
+          width: 100%;
+          order: 1;
+          display: none;
+        }
+
+        .bottom-section .gift-guide-description {
+          font-size: 1rem;
+        }
+        .gift-guide-footer {
+          font-size: 0.6875rem;
+          padding: 0.75rem 1rem;
+        }
+      }
+      }
 </style>
 
 {% schema %}
