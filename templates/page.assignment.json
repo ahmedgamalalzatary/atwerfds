@@ -1,7 +1,7 @@
 {
   "name": "Assignment Page",
   "sections": {
-    "gift_guide_banner": {
+    "gift-guide-banner": {
       "type": "gift-guide",
       "settings": {
         "logo_text": "TISSO VISON",
@@ -9,13 +9,14 @@
         "button1_text": "CHOOSE GIFT",
         "button1_link": "",
         "heading": "The Gift Guide",
-        "description": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
+        "description_intro": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>",
+        "description_extra": "<p>Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
         "button2_text": "SHOP NOW",
         "button2_link": "",
         "footer_text": "SUSTAINABLE: ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
       }
     },
-    "products_guide_grid": {
+    "products-guide-grid": {
       "type": "products-guide",
       "blocks": {
         "product_1": {
@@ -69,7 +70,7 @@
     }
   },
   "order": [
-    "gift_guide_banner",
-    "products_guide_grid"
+    "gift-guide-banner",
+    "products-guide-grid"
   ]
 }

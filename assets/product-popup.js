@@ -20,20 +20,6 @@
 (function() {
   'use strict';
 
-  // ============================================
-  // COLOR MAPPING
-  // WHY: Maps variant color names to hex codes for button styling
-  // ============================================
-  const COLOR_MAP = {
-    'black': '#000000',
-    'white': '#FFFFFF',
-    'blue': '#0D499F',
-    'red': '#B20F36',
-    'gray': '#AFAFB7',
-    'grey': '#AFAFB7',
-    'yellow': '#FFF544'
-  };
-
   // Fixed size options as per requirements
   const SIZE_OPTIONS = ['XS', 'S', 'M', 'L', 'XL'];
 
@@ -98,8 +84,6 @@
 
     // Attach event listeners
     attachModalEventListeners();
-
-    console.log('Product popup initialized');
   }
 
   // ============================================
@@ -404,8 +388,6 @@
   // Product handle: "dark-winter-jacket"
   // ============================================
   function autoAddSoftWinterJacket() {
-    console.log('Special logic triggered: Adding Soft Winter Jacket');
-
     return fetch('/products/dark-winter-jacket.js')
       .then(function(response) {
         if (!response.ok) {
@@ -538,7 +520,5 @@
   } else {
     initializePopup();
   }
-
-  console.log('Product popup script loaded');
 
 })();

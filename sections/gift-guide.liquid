@@ -5,7 +5,6 @@
       <button
         class="gift-guide-hamburger mobile-only"
         aria-label="Menu"
-        onclick="this.closest('.gift-guide-header').querySelector('.gift-guide-mobile-menu').classList.toggle('is-open'); this.classList.toggle('is-active');"
       >
         <span></span>
         <span></span>
@@ -256,8 +255,8 @@
         z-index: 1;
       }
     .up-section {
-      width: 100%
-        position: relative;
+      width: 100%;
+      position: relative;
     }
 
 
@@ -270,7 +269,6 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 2rem;
-        gap: 4rem;
       }
 
       .bottom-section .gift-guide-content {
@@ -298,6 +296,7 @@
         flex: 1;
         transform: scale(1.8);
         transform-origin: left center;
+        padding-top: 2rem;
       }
       /* ============================================
         FOOTER BAR (Bottom sustainability message)
@@ -398,6 +397,7 @@
         }
         .bottom-section .gift-guide-image-wrapper {
           transform-origin: left center;
+        }
       }
       /* ============================================
         MOBILE RESPONSIVE
@@ -470,6 +470,22 @@
       }
       }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.gift-guide-hamburger');
+    
+    if (hamburger) {
+      hamburger.addEventListener('click', function() {
+        const header = this.closest('.gift-guide-header');
+        const menu = header.querySelector('.gift-guide-mobile-menu');
+        
+        menu.classList.toggle('is-open');
+        this.classList.toggle('is-active');
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
